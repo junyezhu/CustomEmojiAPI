@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Cors.Infrastructure;
+using CustomEmojiWebAPI.Source;
 
 namespace CustomEmojiWebAPI
 {
@@ -26,8 +28,9 @@ namespace CustomEmojiWebAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors();
+            //services.AddCors().AddSingleton<ICorsPolicyProvider, CorsPolicyProvider>();
 
+            services.AddCors();
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
@@ -45,11 +48,11 @@ namespace CustomEmojiWebAPI
                 app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "CustomEmojiWebAPI v1"));
             }
 
+            app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
-
-            app.UseCors(x => x.AllowAnyMethod().AllowAnyHeader().AllowAnyOrigin());
 
             app.UseAuthorization();
 

@@ -290,7 +290,7 @@
             var blockBlobClient = containerClient.GetBlockBlobClient(emojiUrl);
             await blockBlobClient.UploadAsync(ms);
 
-            return emojiUrl;
+            return "https://juztest.blob.core.windows.net/juztest/" + emojiUrl;
         }
 
         private IList<CustomEmojiResponse> GetCustomEmojiResponses(IEnumerable<CustomEmojiEntry> entries)

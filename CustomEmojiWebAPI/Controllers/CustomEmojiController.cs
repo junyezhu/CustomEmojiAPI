@@ -15,7 +15,6 @@
         private ICustomEmojiProvider provider = new CustomEmojiProvider();
 
         [HttpGet]
-        [OverrideResponseHeader]
         [EnableCors]
         public async Task<IList<CustomEmojiResponse>> GetPublicCustomEmojis()
         {
@@ -24,7 +23,6 @@
 
         [HttpGet]
         [Route("{userId}")]
-        [OverrideResponseHeader]
         [EnableCors]
         public async Task<IList<CustomEmojiResponse>> GetCustomEmojisByUserId([FromRoute] string userId)
         {
@@ -32,7 +30,6 @@
         }
 
         [HttpPost]
-        [OverrideResponseHeader]
         [EnableCors]
         public async Task CreateCustomEmoji([FromBody] CustomEmojiRequest emoji)
         {
@@ -40,7 +37,6 @@
         }
 
         [HttpPut]
-        [OverrideResponseHeader]
         [EnableCors]
         public async Task UpdateCustomEmoji([FromBody] CustomEmojiRequest emoji)
         {
@@ -49,7 +45,6 @@
 
         [HttpDelete]
         [Route("{userId}/customEmoji/{emojiId}")]
-        [OverrideResponseHeader]
         [EnableCors]
         public async Task DeleteAppEntitlement([FromRoute] string userId, [FromRoute] string emojiId)
         {
